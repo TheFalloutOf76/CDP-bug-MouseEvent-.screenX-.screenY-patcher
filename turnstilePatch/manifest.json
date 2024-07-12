@@ -1,0 +1,17 @@
+{
+    "manifest_version": 3,
+    "name": "Turnstile Patcher",
+    "version": "1",
+    "content_scripts": [
+        {
+            "js": [
+                "./script.js"
+            ],
+            "matches": [
+                "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/*"
+            ],
+            "run_at": "document_start",
+            "all_frames": true
+        }
+    ]
+}
