@@ -1,7 +1,7 @@
 let patchScript = `
 let oldAddEventListener = HTMLElement.prototype.addEventListener;
 
-HTMLElement.prototype.addEventListener = addEventListener = function(type, callback) {
+HTMLElement.prototype.addEventListener = function(type, callback) {
     function interceptor(event) {
         event.__defineGetter__('screenX',()=>1234)
         event.__defineGetter__('screenY',()=>567)
