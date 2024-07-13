@@ -3,9 +3,9 @@ import time
 
 co = ChromiumOptions()
 co.auto_port()
+
 # load in the chrome extension
 co.add_extension("./turnstilePatch/")
-#co.headless(True)
 
 
 page = ChromiumPage(co)
