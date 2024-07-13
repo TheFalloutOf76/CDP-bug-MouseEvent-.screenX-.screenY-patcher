@@ -1,18 +1,14 @@
 let patchScript = `
-let oldAddEventListener = HTMLElement.prototype.addEventListener;
+Object.defineProperty(MouseEvent.prototype, 'screenX', {
+    value: 1234,
+    writable: false
+})
 
-HTMLElement.prototype.addEventListener = function(type, callback) {
-    function interceptor(event) {
-        event.__defineGetter__('screenX',()=>1234)
-        event.__defineGetter__('screenY',()=>567)
-        console.log(event, event.screenX, event.screenY);
-        callback.call(this, event);
-    }
-    if (type == 'click') {
-        return oldAddEventListener.call(this, type, interceptor);
-    }
-    return oldAddEventListener.call(this, type, callback);
-}`;
+Object.defineProperty(MouseEvent.prototype, 'screenY', {
+    value: 567,
+    writable: false
+})
+`;
 
 let element = document.createElement('script');
 element.innerHTML = patchScript;
