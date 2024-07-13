@@ -1,7 +1,7 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Turnstile Patcher",
-    "version": "2",
+    "version": "2.1",
     "content_scripts": [
         {
             "js": [
@@ -11,7 +11,8 @@
                 "<all_urls>"
             ],
             "run_at": "document_start",
-            "all_frames": true
+            "all_frames": true,
+            "world": "MAIN"
         }
     ]
 }
