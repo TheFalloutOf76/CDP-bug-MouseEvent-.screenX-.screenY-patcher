@@ -24,8 +24,8 @@ def getTurnstileToken():
             if turnstileResponse:
                 return turnstileResponse
             challengeWrapper = page.ele("@class=cf-turnstile-wrapper", timeout=1)
-            challengeIframe = challengeWrapper.sr.ele("tag:iframe", timeout=1)
-            challengeIframeBody = challengeIframe.ele("tag:body", timeout=1).sr
+            challengeIframe = challengeWrapper.shadow_root.ele("tag:iframe", timeout=1)
+            challengeIframeBody = challengeIframe.ele("tag:body", timeout=1).shadow_root
             challengeButton = challengeIframeBody.ele("tag:input", timeout=1)
             challengeButton.click()
         except:
