@@ -23,7 +23,10 @@ def getTurnstileToken():
             turnstileResponse = page.run_js("try { return turnstile.getResponse() } catch(e) { return null }")
             if turnstileResponse:
                 return turnstileResponse
-            challengeWrapper = page.ele("@class=cf-turnstile-wrapper", timeout=1)
+            
+            # pov you tried to hide the turnstile 🍆😫
+            challengeSolution = page.ele("@name=cf-turnstile-response", timeout=1)
+            challengeWrapper = challengeSolution.parent()
             challengeIframe = challengeWrapper.shadow_root.ele("tag:iframe", timeout=1)
             challengeIframeBody = challengeIframe.ele("tag:body", timeout=1).shadow_root
             challengeButton = challengeIframeBody.ele("tag:input", timeout=1)

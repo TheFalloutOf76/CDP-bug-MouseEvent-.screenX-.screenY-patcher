@@ -13,7 +13,7 @@ Load the extension in [./turnstilePatch/](/turnstilePatch/)
 
 tested libraries:
 * [DrissionPage](https://github.com/g1879/DrissionPage) ([example](/DrissionPage_example.py))
-* [puppeteer-real-browser](https://github.com/zfcsoftware/puppeteer-real-browser) ([example](/puppeteer-real-browser_example.js))
+* ~~[puppeteer-real-browser](https://github.com/zfcsoftware/puppeteer-real-browser) ([example](/puppeteer-real-browser_example.js))~~ (already directly implemented in library)
 
 ## status
 Gets past Cloudflare Turnstile
