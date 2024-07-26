@@ -1,3 +1,10 @@
-Object.defineProperty(MouseEvent.prototype, 'screenX', { value: 1234 })
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-Object.defineProperty(MouseEvent.prototype, 'screenY', { value: 567 })
+let screenX = getRandomInt(800, 1200);
+let screenY = getRandomInt(400, 600);
+
+Object.defineProperty(MouseEvent.prototype, 'screenX', { value: screenX });
+
+Object.defineProperty(MouseEvent.prototype, 'screenY', { value: screenY });
