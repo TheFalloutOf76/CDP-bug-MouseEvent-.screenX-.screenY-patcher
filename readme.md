@@ -19,3 +19,6 @@ tested libraries:
 Gets past Cloudflare Turnstile
 
 ![turnstile success](https://files.catbox.moe/hx2i15.gif)
+
+## for the memes
+![based web scraper gigachad](https://files.catbox.moe/sgou1o.png)
