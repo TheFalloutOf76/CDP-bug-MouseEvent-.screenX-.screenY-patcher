@@ -30,6 +30,7 @@ def getTurnstileToken():
             challengeIframe = challengeWrapper.shadow_root.ele("tag:iframe", timeout=1)
             challengeIframeBody = challengeIframe.ele("tag:body", timeout=1).shadow_root
             challengeButton = challengeIframeBody.ele("tag:input", timeout=1)
+            challengeButton.focus()
             challengeButton.click()
         except:
             pass
