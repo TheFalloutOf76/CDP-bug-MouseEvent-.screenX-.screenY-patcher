@@ -9,6 +9,20 @@ co.auto_port()
 EXTENSION_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "turnstilePatch"))
 co.add_extension(EXTENSION_PATH) 
 
+# uncomment this if you want to use headless mode
+"""
+co.headless()
+
+from sys import platform
+if platform == "linux" or platform == "linux2":
+    platformIdentifier = "X11; Linux x86_64"
+elif platform == "darwin":
+    platformIdentifier = "Macintosh; Intel Mac OS X 10_15_7"
+elif platform == "win32":
+    platformIdentifier = "Windows NT 10.0; Win64; x64"
+
+co.set_user_agent(f"Mozilla/5.0 ({platformIdentifier}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36")
+"""
 
 page = ChromiumPage(co)
 page.get("https://2captcha.com/demo/cloudflare-turnstile")
