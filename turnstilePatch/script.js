@@ -1,10 +1,11 @@
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+Object.defineProperty(MouseEvent.prototype, 'screenX', {
+    get: function () {
+        return this.clientX + window.screenX;
+    }
+});
 
-let screenX = getRandomInt(800, 1200);
-let screenY = getRandomInt(400, 600);
-
-Object.defineProperty(MouseEvent.prototype, 'screenX', { value: screenX });
-
-Object.defineProperty(MouseEvent.prototype, 'screenY', { value: screenY });
+Object.defineProperty(MouseEvent.prototype, 'screenY', {
+    get: function () {
+        return this.clientY + window.screenY;
+    }
+});
