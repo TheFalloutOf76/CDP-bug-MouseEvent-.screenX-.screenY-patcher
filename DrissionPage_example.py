@@ -1,9 +1,11 @@
-from DrissionPage import ChromiumPage, ChromiumOptions
+from DrissionPage import Chromium, ChromiumOptions
 import time
 import os
 
 co = ChromiumOptions()
 co.auto_port()
+
+co.set_timeouts(base=1)
 
 # change this to the path of the folder containing the extension
 EXTENSION_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "turnstilePatch"))
@@ -21,11 +23,12 @@ elif platform == "darwin":
 elif platform == "win32":
     platformIdentifier = "Windows NT 10.0; Win64; x64"
 
-co.set_user_agent(f"Mozilla/5.0 ({platformIdentifier}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36")
+co.set_user_agent(f"Mozilla/5.0 ({platformIdentifier}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36")
 """
 
-page = ChromiumPage(co)
-page.get("https://2captcha.com/demo/cloudflare-turnstile")
+browser = Chromium(co)
+page = browser.get_tabs()[-1]
+page.get("https://turnstile.zeroclover.io/")
 
 def getTurnstileToken():
     page.run_js("try { turnstile.reset() } catch(e) { }")
@@ -38,13 +41,11 @@ def getTurnstileToken():
             if turnstileResponse:
                 return turnstileResponse
             
-            # pov you tried to hide the turnstile 🍆😫
-            challengeSolution = page.ele("@name=cf-turnstile-response", timeout=1)
+            challengeSolution = page.ele("@name=cf-turnstile-response")
             challengeWrapper = challengeSolution.parent()
-            challengeIframe = challengeWrapper.shadow_root.ele("tag:iframe", timeout=1)
-            challengeIframeBody = challengeIframe.ele("tag:body", timeout=1).shadow_root
-            challengeButton = challengeIframeBody.ele("tag:input", timeout=1)
-            challengeButton.focus()
+            challengeIframe = challengeWrapper.shadow_root.ele("tag:iframe")
+            challengeIframeBody = challengeIframe.ele("tag:body").shadow_root
+            challengeButton = challengeIframeBody.ele("tag:input")
             challengeButton.click()
         except:
             pass
