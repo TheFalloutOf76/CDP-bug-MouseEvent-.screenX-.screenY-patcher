@@ -44,6 +44,23 @@ def getTurnstileToken():
             challengeSolution = page.ele("@name=cf-turnstile-response")
             challengeWrapper = challengeSolution.parent()
             challengeIframe = challengeWrapper.shadow_root.ele("tag:iframe")
+            
+            challengeIframe.run_js("""
+window.dtp = 1
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// old method wouldn't work on 4k screens
+
+let screenX = getRandomInt(800, 1200);
+let screenY = getRandomInt(400, 600);
+
+Object.defineProperty(MouseEvent.prototype, 'screenX', { value: screenX });
+
+Object.defineProperty(MouseEvent.prototype, 'screenY', { value: screenY });
+                        """)
+            
             challengeIframeBody = challengeIframe.ele("tag:body").shadow_root
             challengeButton = challengeIframeBody.ele("tag:input")
             challengeButton.click()
